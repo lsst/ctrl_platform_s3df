@@ -35,10 +35,8 @@ STARTD_NOCLAIM_SHUTDOWN=$GLIDEIN_SHUTDOWN
 
 STARTD_ATTRS = ALLOCATED_NODE_SET
 
-# hold jobs that are more than 10% over memory assigned to the slot.
-MEMORY_EXCEEDED = ((MemoryUsage*1.0 > Memory) =!= TRUE)
-# PREEMPT = ($(PREEMPT)) || $(MEMORY_EXCEEDED)
-# WANT_SUSPEND = $(WANT_SUSPEND) && $(MEMORY_EXCEEDED)
+# hold jobs that the startd detects have exceeded assigned memory
+MEMORY_EXCEEDED = ((MemoryUsage > Memory) =!= TRUE)
 WANT_HOLD = $(MEMORY_EXCEEDED)
 WANT_HOLD_REASON = ifThenElse( $(MEMORY_EXCEEDED), \
                "Your job used too much virtual memory.", \
