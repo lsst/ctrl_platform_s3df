@@ -1,0 +1,73 @@
+#!/bin/bash -l
+nodeset=$NODE_SET
+numcpus=$CPUS
+
+export VERY_RNUM=$RANDOM
+export RUBIN_COLLECTOR_HOST=sdfrome001.sdf.slac.stanford.edu
+export RUBIN_COLLECTOR_PORT=9618
+
+echo USER_NAME
+echo $USER_NAME
+myuser=$USER_NAME
+echo ${myuser}
+
+myhost=`hostname`
+echo ${myhost}
+
+# NEW 
+# REMOTE_DIR=$LOCAL_SCRATCH/$CONFIGURATION_ID/${myhost}
+REMOTE_DIR=$LOCAL_SCRATCH/$CONFIGURATION_ID/${myhost}/${VERY_RNUM}
+mkdir -p ${REMOTE_DIR}/config
+mkdir -p ${REMOTE_DIR}/log
+mkdir -p ${REMOTE_DIR}/spool
+mkdir -p ${REMOTE_DIR}/execute
+
+# NEW
+# cp $SCRATCH_DIR/configs/$GENERATED_CONFIG ${REMOTE_DIR}/config/$GENERATED_CONFIG
+cp $SCRATCH_DIR/$CONFIGURATION_ID/configs/$GENERATED_CONFIG ${REMOTE_DIR}/config/$GENERATED_CONFIG
+condorConfig="${REMOTE_DIR}/config/$GENERATED_CONFIG"
+
+condorLocal=${REMOTE_DIR}
+
+echo ${condorConfig}
+
+
+export CONDOR_CONFIG=${condorConfig}
+
+export _condor_LOCAL_DIR=${condorLocal}
+export _condor_COLLECTOR_PORT=${RUBIN_COLLECTOR_PORT}
+export _condor_CONDOR_HOST=${RUBIN_COLLECTOR_HOST}
+export _condor_COLLECTOR_HOST=${RUBIN_COLLECTOR_HOST}
+export _condor_CCB_ADDRESS=${RUBIN_COLLECTOR_HOST}
+
+export RELEASE_DIR=/sdf/group/rubin/sw/htcondor
+export _CONDOR_RELEASE_DIR=${RELEASE_DIR}/sbin
+export _CONDOR_SBIN=${RELEASE_DIR}/sbin
+export _CONDOR_FILETRANSFER_PLUGINS=${RELEASE_DIR}/libexec/curl_plugin
+
+# export _CONDOR_STARTD_RESOURCE_PREFIX=slot_${VERY_RNUM}_
+export _CONDOR_STARTD_RESOURCE_PREFIX=slot_${myuser}_${VERY_RNUM}_
+
+export GNUMCORES=$1
+export GMEM=$2
+
+####################################################################################
+
+myid=`id -u`
+mygp=`id -g`
+export _condor_CONDOR_IDS="${myid}.${mygp}"
+
+echo _condor_CONDOR_IDS
+echo ${_condor_CONDOR_IDS}
+
+###############################################################################
+# Start htcondor, in the foreground
+
+# echo "about to run condor_master"
+# exec ${_condor_SBIN}/condor_master -f -n ${USER}_${VERY_RNUM}
+
+export PATH=${CONDOR_ROOT}/sbin:${PATH}
+export PATH=${CONDOR_ROOT}/bin:${PATH}
+
+${_CONDOR_SBIN}/condor_master -f -n ${USER}_compute_condor_${VERY_RNUM}
+
