@@ -21,6 +21,8 @@ mkdir -p ${REMOTE_DIR}/config
 mkdir -p ${REMOTE_DIR}/log
 mkdir -p ${REMOTE_DIR}/spool
 mkdir -p ${REMOTE_DIR}/execute
+EXEC_DIR=${LSCRATCH}/execute
+mkdir -p ${EXEC_DIR}
 
 # NEW
 # cp $SCRATCH_DIR/configs/$GENERATED_CONFIG ${REMOTE_DIR}/config/$GENERATED_CONFIG
@@ -35,6 +37,8 @@ echo ${condorConfig}
 export CONDOR_CONFIG=${condorConfig}
 
 export _condor_LOCAL_DIR=${condorLocal}
+export _condor_EXECUTE=${EXEC_DIR}
+export _condor_MAXJOBRETIREMENTTIME=43200
 export _condor_COLLECTOR_PORT=${RUBIN_COLLECTOR_PORT}
 export _condor_CONDOR_HOST=${RUBIN_COLLECTOR_HOST}
 export _condor_COLLECTOR_HOST=${RUBIN_COLLECTOR_HOST}
