@@ -42,7 +42,7 @@ STARTD_ATTRS = ALLOCATED_NODE_SET
 
 WANT_HOLD = $(MEMORY_EXCEEDED)
 WANT_HOLD_REASON = ifThenElse( $(MEMORY_EXCEEDED), \
-                "Your job used too much virtual memory.", \
+               "Your job used too much virtual memory.", \
                undefined )
 
 WANT_SUSPEND = False
@@ -53,5 +53,7 @@ WORKING_SET_SIZE_MB = (ImageSize/1024)
 MEMORY_AVAILABLE_MB = (Memory)
 MEMORY_EXCEEDED = ($(WORKING_SET_SIZE_MB) > $(MEMORY_AVAILABLE_MB))
 PREEMPT= ($(RAN_FOR_A_BIT) && $(MEMORY_EXCEEDED))
+
+FILESYSTEM_DOMAIN = slac.stanford.edu
 
 
