@@ -2,11 +2,13 @@
 #SBATCH -p $QUEUE
 #SBATCH -N 1
 #SBATCH -t $WALL_CLOCK
+#SBATCH -A $ACCOUNT
+#SBATCH -q $QOS
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task $CPUS
 #SBATCH -J glide_$USER_NAME
 
-MB=$(( 4000*$CPUS ))
+MB=$(( 4096*$CPUS ))
 
 # removed  -N $NODE_COUNT
 # removed  -J $NODE_SET
