@@ -52,6 +52,18 @@ export _CONDOR_FILETRANSFER_PLUGINS=${RELEASE_DIR}/libexec/curl_plugin
 # export _CONDOR_STARTD_RESOURCE_PREFIX=slot_${VERY_RNUM}_
 export _CONDOR_STARTD_RESOURCE_PREFIX=slot_${myuser}_${VERY_RNUM}_
 
+SPAN_MEMORY=1000
+LOWER_BOUND=$((SLURM_MEM_PER_NODE - SPAN_MEMORY))
+UPPER_BOUND=$((SLURM_MEM_PER_NODE + SPAN_MEMORY))
+common_job_name=glide_${myuser}
+if [ $SLURM_JOB_NAME == ${common_job_name} ]; then
+   export _CONDOR_START="(Owner == \"${myuser}\")"
+else
+   export _CONDOR_START="(Owner == \"${myuser}\") && (RequestMemory>${LOWER_BOUND}) && (RequestMemory<${UPPER_BOUND})"
+fi
+echo _CONDOR_START
+echo ${_CONDOR_START}
+
 export GNUMCORES=$1
 export GMEM=$2
 
