@@ -21,7 +21,7 @@ mkdir -p ${REMOTE_DIR}/config
 mkdir -p ${REMOTE_DIR}/log
 mkdir -p ${REMOTE_DIR}/spool
 mkdir -p ${REMOTE_DIR}/execute
-EXEC_DIR=${LSCRATCH}/execute
+EXEC_DIR=${LSCRATCH}/slurm_job_id_${SLURM_JOB_ID}/condor/execute
 mkdir -p ${EXEC_DIR}
 
 # NEW
