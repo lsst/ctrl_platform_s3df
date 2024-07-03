@@ -16,11 +16,11 @@ echo ${myhost}
 
 # NEW 
 # REMOTE_DIR=$LOCAL_SCRATCH/$CONFIGURATION_ID/${myhost}
-REMOTE_DIR=$LOCAL_SCRATCH/$CONFIGURATION_ID/${myhost}/${VERY_RNUM}
+DATEDIR=$(date '+%Y_%m_%d')
+REMOTE_DIR=$LOCAL_SCRATCH/${DATEDIR}/$CONFIGURATION_ID/${myhost}/${VERY_RNUM}
 mkdir -p ${REMOTE_DIR}/config
 mkdir -p ${REMOTE_DIR}/log
 mkdir -p ${REMOTE_DIR}/spool
-mkdir -p ${REMOTE_DIR}/execute
 EXEC_DIR=${LSCRATCH}/slurm_job_id_${SLURM_JOB_ID}/condor/execute
 mkdir -p ${EXEC_DIR}
 
