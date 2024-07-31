@@ -3,7 +3,7 @@ nodeset=$NODE_SET
 numcpus=$CPUS
 
 export VERY_RNUM=$RANDOM
-export RUBIN_COLLECTOR_HOST=sdfrome001.sdf.slac.stanford.edu
+export RUBIN_COLLECTOR_HOST="sdfrome001.sdf.slac.stanford.edu, sdfiana012.sdf.slac.stanford.edu"
 export RUBIN_COLLECTOR_PORT=9618
 
 echo USER_NAME
