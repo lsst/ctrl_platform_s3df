@@ -12,7 +12,7 @@ else
     export RUBIN_COLLECTOR_HOST="sdfrome001.sdf.slac.stanford.edu, sdfiana012.sdf.slac.stanford.edu"
 fi
 
-export RUBIN_COLLECTOR_PORT=$COLLECTORPORT
+export RUBIN_COLLECTOR_PORT=${COLLECTORPORT}
 echo "Using RUBIN_COLLECTOR_HOST $RUBIN_COLLECTOR_HOST"
 echo "Using RUBIN_COLLECTOR_PORT $RUBIN_COLLECTOR_PORT"
 
