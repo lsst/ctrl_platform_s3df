@@ -8,12 +8,13 @@ if [ $COLLECTOR ]; then
     echo "COLLECTOR is set."
     export RUBIN_COLLECTOR_HOST=$COLLECTOR
 else
-    echo "COLLECTOR is empty."
+    echo "COLLECTOR is empty; using USDF default"
     export RUBIN_COLLECTOR_HOST="sdfrome001.sdf.slac.stanford.edu, sdfiana012.sdf.slac.stanford.edu"
 fi
-echo "Using RUBIN_COLLECTOR_HOST $RUBIN_COLLECTOR_HOST"
 
-export RUBIN_COLLECTOR_PORT=9618
+export RUBIN_COLLECTOR_PORT=$COLLECTORPORT
+echo "Using RUBIN_COLLECTOR_HOST $RUBIN_COLLECTOR_HOST"
+echo "Using RUBIN_COLLECTOR_PORT $RUBIN_COLLECTOR_PORT"
 
 echo USER_NAME
 echo $USER_NAME
