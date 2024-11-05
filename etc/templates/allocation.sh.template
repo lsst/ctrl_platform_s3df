@@ -3,8 +3,18 @@ nodeset=$NODE_SET
 numcpus=$CPUS
 
 export VERY_RNUM=$RANDOM
-export RUBIN_COLLECTOR_HOST="sdfrome001.sdf.slac.stanford.edu, sdfiana012.sdf.slac.stanford.edu"
-export RUBIN_COLLECTOR_PORT=9618
+
+if [ $COLLECTOR ]; then
+    echo "COLLECTOR is set."
+    export RUBIN_COLLECTOR_HOST=$COLLECTOR
+else
+    echo "COLLECTOR is empty; using USDF default"
+    export RUBIN_COLLECTOR_HOST="sdfrome001.sdf.slac.stanford.edu, sdfiana012.sdf.slac.stanford.edu"
+fi
+
+export RUBIN_COLLECTOR_PORT=$CPORT
+echo "Using RUBIN_COLLECTOR_HOST $RUBIN_COLLECTOR_HOST"
+echo "Using RUBIN_COLLECTOR_PORT $RUBIN_COLLECTOR_PORT"
 
 echo USER_NAME
 echo $USER_NAME
