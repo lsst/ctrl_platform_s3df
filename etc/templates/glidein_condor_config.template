@@ -18,10 +18,11 @@ SEC_TOKEN_POOL_SIGNING_KEY_FILE=$USERHOME/condor/passwords.d/s3df_token_key
 ALLOW_READ = *
 ALLOW_WRITE = *
 ALLOW_DAEMON = *
+ALLOW_ADMINISTRATOR = $USER_NAME@sdfmilan*.sdf.slac.stanford.edu/sdfiana012.sdf.slac.stanford.edu
+ALLOW_ADMINISTRATOR = $(ALLOW_ADMINISTRATOR), $USER_NAME@sdfmilan*.sdf.slac.stanford.edu/sdfiana013.sdf.slac.stanford.edu
+ALLOW_ADMINISTRATOR = $(ALLOW_ADMINISTRATOR), $USER_NAME@sdfmilan*.sdf.slac.stanford.edu/sdfiana014.sdf.slac.stanford.edu
 
 use role:execute
-
-STARTD_DEBUG = D_FULLDEBUG, D_SECURITY
 
 AUTO_INCLUDE_SHARED_PORT_IN_DAEMON_LIST=False
 USE_SHARED_PORT=False
