@@ -21,3 +21,4 @@ pytest_session.txt
 .coverage
 
 _build.*
+python/*.dist-info/
