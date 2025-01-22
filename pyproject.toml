@@ -2,8 +2,7 @@
 name = "lsst-ctrl-platform-s3df"
 description = "Configuration and template files for s3df ctrl-execute platform."
 readme = "README.rst"
-requires-python = ">=3.11,<3.13"
-dynamic = ["version"]
+requires-python = ">=3.11"
 authors = [
     {name="Rubin Observatory Data Management", email="dm-admin@lists.lsst.org"},
 ]
@@ -14,11 +13,11 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Astronomy",
 ]
 keywords = ["lsst"]
-
-dependencies = []
+dynamic = ["version"]
 
 [project.urls]
 Source = "https://github.com/lsst/ctrl_platform_s3df"
@@ -26,9 +25,6 @@ Source = "https://github.com/lsst/ctrl_platform_s3df"
 [build-system]
 requires = ["hatchling", "lsst-versions >= 1.6.0"]
 build-backend = "hatchling.build"
-
-[tool.hatch.metadata]
-allow-direct-references = true
 
 [tool.hatch.version]
 source = "lsst"
