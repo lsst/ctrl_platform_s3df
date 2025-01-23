@@ -42,6 +42,12 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 source = "lsst"
 
+# Explicitly exclude and skip traversal of the symlink farm directory during build
+# TODO: this is not needed if the symlink farm is removed.
+[tool.hatch.build]
+skip-excluded-dirs = true
+exclude = ["/etc"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["python/lsst"]
 
