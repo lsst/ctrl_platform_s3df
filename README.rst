@@ -2,6 +2,4 @@
 ctrl_platform_s3df
 ##################
 
-
-
-.. Add a brief (few sentence) description of what this package provides.
+This package contains S3DF (SLAC) platform configuration and template files for `lsst.ctrl.execute`.
