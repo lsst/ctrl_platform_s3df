@@ -1,10 +1,9 @@
 import sys
 
 import pytest
-
-from lsst.ctrl.execute.findPackageFile import find_package_file
 from lsst.ctrl.execute.allocationConfig import AllocationConfig
 from lsst.ctrl.execute.condorConfig import CondorConfig
+from lsst.ctrl.execute.findPackageFile import find_package_file
 
 
 def test_exec_config():

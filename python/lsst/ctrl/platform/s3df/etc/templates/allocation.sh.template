@@ -24,7 +24,7 @@ echo ${myuser}
 myhost=`hostname`
 echo ${myhost}
 
-# NEW 
+# NEW
 # REMOTE_DIR=$LOCAL_SCRATCH/$CONFIGURATION_ID/${myhost}
 REMOTE_DIR=$LOCAL_SCRATCH/$DATE_STRING/$CONFIGURATION_ID/${myhost}/${VERY_RNUM}
 mkdir -p ${REMOTE_DIR}/config
@@ -95,4 +95,3 @@ export PATH=${CONDOR_ROOT}/sbin:${PATH}
 export PATH=${CONDOR_ROOT}/bin:${PATH}
 
 ${_CONDOR_SBIN}/condor_master -f -n ${USER}_compute_condor_${VERY_RNUM}
-
