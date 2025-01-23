@@ -23,6 +23,7 @@ dependencies = []
 [dependency-groups]
 dev = [
     "lsst-ctrl-execute",
+    "pre-commit>=4.0.1",
     "pytest",
     "pytest-cov",
 ]
@@ -45,4 +46,4 @@ source = "lsst"
 packages = ["python/lsst"]
 
 [tool.lsst_versions]
-write_to = "python/lsst/ctrl/platform/s3df/.version.py"
+write_to = "python/lsst/ctrl/platform/s3df/version.py"
