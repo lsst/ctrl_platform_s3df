@@ -18,6 +18,18 @@ classifiers = [
 ]
 keywords = ["lsst"]
 dynamic = ["version"]
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "lsst-ctrl-execute",
+    "pytest",
+    "pytest-cov",
+]
+
+# TODO: Remove after upstream dependency is merged to main
+[tool.uv.sources]
+lsst-ctrl-execute = { git = "https://github.com/lsst/ctrl_execute.git", rev = "tickets/DM-48519" }
 
 [project.urls]
 Source = "https://github.com/lsst/ctrl_platform_s3df"

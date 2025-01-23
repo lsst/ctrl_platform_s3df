@@ -1,33 +1,27 @@
+import sys
 
-import os.path
-import unittest
+import pytest
 
-from lsst.ctrl.execute import envString
+from lsst.ctrl.execute.findPackageFile import find_package_file
 from lsst.ctrl.execute.allocationConfig import AllocationConfig
 from lsst.ctrl.execute.condorConfig import CondorConfig
 
-TESTDIR = os.path.abspath(os.path.dirname(__file__))
+
+def test_exec_config():
+    exec_config_name = find_package_file("execConfig.py", platform="s3df")
+
+    configuration = CondorConfig()
+    configuration.loadFromStream(exec_config_name)
+    assert configuration.platform.scheduler == "slurm"
 
 
-class S3DFSimpleTestCase(unittest.TestCase):
-    """Test basic configuration reading."""
+def test_allocation_config():
+    slurm_config_name = find_package_file("slurmConfig.py", platform="s3df")
 
-    def test_exec_config(self):
-        exec_config_name = os.path.join(TESTDIR, os.pardir, "etc", "config", "execConfig.py")
-
-        resolved_name = envString.resolve(exec_config_name)
-        configuration = CondorConfig()
-        configuration.load(resolved_name)
-        self.assertEqual(configuration.platform.scheduler, "slurm")
-
-    def test_allocation_config(self):
-        slurm_config_name = os.path.join(TESTDIR, os.pardir, "etc", "config", "slurmConfig.py")
-
-        resolved_name = envString.resolve(slurm_config_name)
-        configuration = AllocationConfig()
-        configuration.load(resolved_name)
-        self.assertEqual(configuration.platform.queue, "$QUEUE")
+    configuration = AllocationConfig()
+    configuration.loadFromStream(slurm_config_name)
+    assert configuration.platform.queue == "$QUEUE"
 
 
 if __name__ == "__main__":
-    unittest.main()
+    sys.exit(pytest.main())
