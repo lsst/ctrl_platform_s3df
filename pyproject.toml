@@ -28,9 +28,8 @@ dev = [
     "pytest-cov",
 ]
 
-# TODO: Remove after upstream dependency is merged to main
 [tool.uv.sources]
-lsst-ctrl-execute = { git = "https://github.com/lsst/ctrl_execute.git", rev = "tickets/DM-48519" }
+lsst-ctrl-execute = { git = "https://github.com/lsst/ctrl_execute.git", rev = "main" }
 
 [project.urls]
 Source = "https://github.com/lsst/ctrl_platform_s3df"
@@ -50,6 +49,3 @@ exclude = ["/etc"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["python/lsst"]
-
-[tool.lsst_versions]
-write_to = "python/lsst/ctrl/platform/s3df/version.py"
