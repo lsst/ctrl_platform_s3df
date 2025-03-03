@@ -29,7 +29,7 @@ dev = [
 ]
 
 [tool.uv.sources]
-lsst-ctrl-execute = { git = "https://github.com/lsst/ctrl_execute.git", rev = "tickets/DM-48965" }
+lsst-ctrl-execute = { git = "https://github.com/lsst/ctrl_execute.git", rev = "main" }
 
 [project.urls]
 Source = "https://github.com/lsst/ctrl_platform_s3df"
