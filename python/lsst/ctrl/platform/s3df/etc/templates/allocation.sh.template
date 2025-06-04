@@ -54,7 +54,7 @@ export _condor_COLLECTOR_HOST=${RUBIN_COLLECTOR_HOST}
 export _condor_CCB_ADDRESS=${RUBIN_COLLECTOR_HOST}
 
 export RELEASE_DIR=/sdf/group/rubin/sw/htcondor
-export _CONDOR_RELEASE_DIR=${RELEASE_DIR}/sbin
+export _CONDOR_RELEASE_DIR=${RELEASE_DIR}
 export _CONDOR_SBIN=${RELEASE_DIR}/sbin
 export _CONDOR_FILETRANSFER_PLUGINS=${RELEASE_DIR}/libexec/curl_plugin
 
