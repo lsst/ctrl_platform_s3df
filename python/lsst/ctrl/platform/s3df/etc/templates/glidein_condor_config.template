@@ -52,3 +52,6 @@ WANT_HOLD = $(MEMORY_EXCEEDED)
 WANT_HOLD_REASON = ifThenElse( $(MEMORY_EXCEEDED), \
                "Your job used too much virtual memory.", \
                undefined )
+
+$CONDOR_CONFIG_BLOCK
+
