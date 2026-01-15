@@ -10,7 +10,7 @@ def test_exec_config():
     exec_config_name = find_package_file("execConfig.py", platform="s3df")
 
     configuration = CondorConfig()
-    configuration.loadFromStream(exec_config_name)
+    configuration.load(exec_config_name)
     assert configuration.platform.scheduler == "slurm"
 
 
@@ -18,7 +18,7 @@ def test_allocation_config():
     slurm_config_name = find_package_file("slurmConfig.py", platform="s3df")
 
     configuration = AllocationConfig()
-    configuration.loadFromStream(slurm_config_name)
+    configuration.load(slurm_config_name)
     assert configuration.platform.queue == "$QUEUE"
 
 

@@ -23,6 +23,9 @@ dependencies = []
 [dependency-groups]
 dev = [
     "lsst-ctrl-execute",
+    # Until new ctrl-execute appears that can be pinned to support the
+    # pex_config changes, require the pex_config version
+    "lsst-pex-config >= 30.2026.300",
     "pre-commit>=4.0.1",
     "pytest",
     "pytest-cov",
