@@ -53,7 +53,26 @@ export _condor_CONDOR_HOST=${RUBIN_COLLECTOR_HOST}
 export _condor_COLLECTOR_HOST=${RUBIN_COLLECTOR_HOST}
 export _condor_CCB_ADDRESS=${RUBIN_COLLECTOR_HOST}
 
-export RELEASE_DIR=/sdf/group/rubin/sw/htcondor
+# Determining the OS MAJOR_VERSION in order to utilize an
+# appropriate HTCondor binary tarball for RELEASE_DIR.
+# HTCondor releases different binaries for Alma8, Alma9, etc.
+OSIN=`cat /etc/os-release  | grep VERSION_ID`
+while IFS='"' read -ra TOK; do
+  FULL_VERSION="${TOK[1]}"
+  echo "FULL_VERSION $FULL_VERSION"
+  while IFS='.' read -ra TOKEN; do
+    MAJOR_VERSION="${TOKEN[0]}"
+  done <<< "$FULL_VERSION"
+done <<< "$OSIN"
+echo "MAJOR_VERSION $MAJOR_VERSION"
+if [ $MAJOR_VERSION == 9 ]; then
+   echo "It is Rocky9 Torino"
+   export RELEASE_DIR=/sdf/group/rubin/sw/htcondor.d/rocky9/current
+else
+   echo "RHEL8 standard"
+   export RELEASE_DIR=/sdf/group/rubin/sw/htcondor
+fi
+echo "Using RELEASE_DIR ${RELEASE_DIR}"
 export _CONDOR_RELEASE_DIR=${RELEASE_DIR}
 export _CONDOR_SBIN=${RELEASE_DIR}/sbin
 export _CONDOR_FILETRANSFER_PLUGINS=${RELEASE_DIR}/libexec/curl_plugin
