@@ -42,9 +42,12 @@ $DYNAMIC_SLOTS_BLOCK
 
 $PACK_BLOCK
 
+
+$NODESET_BLOCK
+
 STARTD_NOCLAIM_SHUTDOWN=$GLIDEIN_SHUTDOWN
 
-STARTD_ATTRS = ALLOCATED_NODE_SET
+STARTD_ATTRS = $(STARTD_ATTRS) Nodeset
 
 # hold jobs that the startd detects have exceeded assigned memory
 MEMORY_EXCEEDED = ((MemoryUsage > Memory) =!= TRUE)
