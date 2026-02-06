@@ -12,6 +12,15 @@ else
     export RUBIN_COLLECTOR_HOST="sdfiana012.sdf.slac.stanford.edu"
 fi
 
+if [ $NODESET ]; then
+    echo "NODESET is specified"
+    echo "NODESET $NODESET"
+    NODESET_CLAUSE=" && (JobNodeset == \"$NODESET\")"
+else
+    echo "NODESET is empty"
+    NODESET_CLAUSE=""
+fi
+
 export RUBIN_COLLECTOR_PORT=$CPORT
 echo "Using RUBIN_COLLECTOR_HOST $RUBIN_COLLECTOR_HOST"
 echo "Using RUBIN_COLLECTOR_PORT $RUBIN_COLLECTOR_PORT"
@@ -78,16 +87,18 @@ export _CONDOR_SBIN=${RELEASE_DIR}/sbin
 export _CONDOR_FILETRANSFER_PLUGINS=${RELEASE_DIR}/libexec/curl_plugin
 
 # export _CONDOR_STARTD_RESOURCE_PREFIX=slot_${VERY_RNUM}_
-export _CONDOR_STARTD_RESOURCE_PREFIX=slot_${myuser}_${VERY_RNUM}_
+# Add an informational slot name so that slots of different nodesets do not look the same
+N10=`echo $NODESET | cut -c1-10`
+export _CONDOR_STARTD_RESOURCE_PREFIX=${N10}slot_${myuser}_${VERY_RNUM}_
 
 SPAN_MEMORY=1000
 LOWER_BOUND=$((SLURM_MEM_PER_NODE - SPAN_MEMORY))
 UPPER_BOUND=$((SLURM_MEM_PER_NODE + SPAN_MEMORY))
-common_job_name=glide_${myuser}
+common_job_name="$NODESETglide_${myuser}"
 if [ $SLURM_JOB_NAME == ${common_job_name} ]; then
-   export _CONDOR_START="(Owner == \"${myuser}\")"
+   export _CONDOR_START="(Owner == \"${myuser}\")${NODESET_CLAUSE}"
 else
-   export _CONDOR_START="(Owner == \"${myuser}\") && (RequestMemory>${LOWER_BOUND}) && (RequestMemory<${UPPER_BOUND})"
+   export _CONDOR_START="(Owner == \"${myuser}\")${NODESET_CLAUSE} && (RequestMemory>${LOWER_BOUND}) && (RequestMemory<${UPPER_BOUND})"
 fi
 echo _CONDOR_START
 echo ${_CONDOR_START}

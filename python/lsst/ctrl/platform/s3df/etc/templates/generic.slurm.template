@@ -5,7 +5,7 @@
 #SBATCH -A $ACCOUNT
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task $CPUS
-#SBATCH -J glide_$USER_NAME
+#SBATCH -J $NODESETglide_$USER_NAME
 $QOS
 $RESERVATION
 $EXCLUSIVE
