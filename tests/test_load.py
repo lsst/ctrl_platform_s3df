@@ -12,6 +12,8 @@ def test_exec_config():
     configuration = CondorConfig()
     configuration.load(exec_config_name)
     assert configuration.platform.scheduler == "slurm"
+    assert configuration.platform.peakcpus == 120
+    assert configuration.platform.peakmemory == 491520
 
 
 def test_allocation_config():
