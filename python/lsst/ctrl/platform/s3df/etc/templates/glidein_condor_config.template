@@ -13,7 +13,6 @@ FS_REMOTE_DIR = /sdf/group/rubin/services/htcondor/shared
 
 SEC_TOKEN_DIRECTORY=$USER_HOME/.condor/tokens.d/
 SEC_PASSWORD_DIRECTORY=$USER_HOME/.condor/passwords.d/
-SEC_TOKEN_POOL_SIGNING_KEY_FILE=$USER_HOME/.condor/passwords.d/$POOLKEY
 
 ALLOW_READ = *
 ALLOW_WRITE = *
