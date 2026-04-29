@@ -11,9 +11,8 @@ SEC_READ_AUTHENTICATION_METHODS = FS_REMOTE, IDTOKENS, FS
 # FS_REMOTE_DIR = /sdf/home/d/daues/condor-authenticate
 FS_REMOTE_DIR = /sdf/group/rubin/services/htcondor/shared
 
-SEC_TOKEN_DIRECTORY=$USERHOME/condor/tokens.d/
-SEC_PASSWORD_DIRECTORY=$USERHOME/condor/passwords.d/
-SEC_TOKEN_POOL_SIGNING_KEY_FILE=$USERHOME/condor/passwords.d/s3df_token_key
+SEC_TOKEN_DIRECTORY=$USER_HOME/.condor/tokens.d/
+SEC_PASSWORD_DIRECTORY=$USER_HOME/.condor/passwords.d/
 
 ALLOW_READ = *
 ALLOW_WRITE = *
