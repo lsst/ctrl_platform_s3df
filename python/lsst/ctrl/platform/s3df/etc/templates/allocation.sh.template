@@ -123,5 +123,10 @@ echo ${_condor_CONDOR_IDS}
 
 export PATH=${CONDOR_ROOT}/sbin:${PATH}
 export PATH=${CONDOR_ROOT}/bin:${PATH}
+if [ $OMP_NUM_THREADS ]; then
+    echo "OMP_NUM_THREADS $OMP_NUM_THREADS"
+    echo "unsetting OMP_NUM_THREADS"
+fi
+unset OMP_NUM_THREADS
 
 ${_CONDOR_SBIN}/condor_master -f -n ${USER}_compute_condor_${VERY_RNUM}
