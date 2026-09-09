@@ -123,5 +123,15 @@ echo ${_condor_CONDOR_IDS}
 
 export PATH=${CONDOR_ROOT}/sbin:${PATH}
 export PATH=${CONDOR_ROOT}/bin:${PATH}
+#
+# HTCondor cannot create a partitionable slot with more cpus than the current value
+# of OMP_NUM_THREADS. In order for allocateNodes to make large multicore slots, the
+# env var OMP_NUM_THRADS is unset before launching condor_master
+#
+if [[ $OMP_NUM_THREADS ]]; then
+    echo "OMP_NUM_THREADS $OMP_NUM_THREADS"
+    echo "unsetting OMP_NUM_THREADS"
+fi
+unset OMP_NUM_THREADS
 
 ${_CONDOR_SBIN}/condor_master -f -n ${USER}_compute_condor_${VERY_RNUM}
